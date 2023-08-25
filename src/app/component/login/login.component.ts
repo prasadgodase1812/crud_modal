@@ -65,7 +65,7 @@ export class LoginComponent {
 
   ActiveItem: any;
 
-  _edit(item: any) {
+  _edit(data: any) {
     this.addShow = false;
     this.showUpdate = true;
 
@@ -73,14 +73,14 @@ export class LoginComponent {
     // this.ActiveItem = item;
 
     this._loginForm.patchValue({
-      name: item.name,
-      email: item.email,
-      mobile: item.mobile,
-      city: item.city,
-      pin: item.pin,
+      name: data.name,
+      email: data.email,
+      mobile: data.mobile,
+      city: data.city,
+      pin: data.pin,
     });
 
-    this._crudInterface = item;
+    this._crudInterface = data;
   }
 
   _updateData() {
