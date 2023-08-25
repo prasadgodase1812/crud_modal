@@ -1,0 +1,153 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="#">CRUD</a>
+    <div>
+      <button
+        class="btn btn-success text-light"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="add()"
+      >
+        ADD
+      </button>
+    </div>
+  </div>
+</nav>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Sr.no</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile No</th>
+      <th>City</th>
+      <th>Pin</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let users of Datas; let id = index">
+      <td>{{ id + 1 }}</td>
+      <td>{{ users.name }}</td>
+      <td>{{ users.email }}</td>
+      <td>{{ users.mobile }}</td>
+      <td>{{ users.city }}</td>
+      <td>{{ users.pin }}</td>
+      <td>
+        <button
+          class="btn btn-primary m-2 btn-sm"
+          (click)="_edit(users)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          type="button"
+          (click)="_deleteData(users.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">LOGIN PAGE</h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form [formGroup]="_loginForm">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="mobile">Mobile No</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="mobile"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="city"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="pin">PinCode</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="pin"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-success"
+          *ngIf="showUpdate"
+          (click)="_updateData()"
+        >
+          Update
+        </button>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          *ngIf="addShow"
+          type="button"
+          class="btn btn-success"
+          (click)="_userData()"
+          [disabled]="_loginForm.invalid"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

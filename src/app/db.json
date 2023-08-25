@@ -1,0 +1,30 @@
+{
+  "login": [
+    {
+      "name": "test",
+      "email": "test2@gmail.com",
+      "mobile": "982892390",
+      "city": "sangola",
+      "pin": "413307",
+      "id": 1
+    },
+    {
+      "name": "test2",
+      "email": "test2@gmail.com",
+      "mobile": "982803029",
+      "city": "Pune",
+      "pin": "413392",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
