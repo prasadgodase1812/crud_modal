@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { CrudserviceService } from 'src/app/service/crudservice.service';
 import { loginInterface } from './interfaces/login';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,18 +16,21 @@ import { loginInterface } from './interfaces/login';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  addShow!: boolean;
-  showUpdate!: boolean;
+  Show!: boolean;
+  Update!: boolean;
 
   //storer interface here
   _crudInterface: loginInterface = new loginInterface();
 
   constructor(
     private fb: FormBuilder,
-    private _crudservice: CrudserviceService
+    private _crudservice: CrudserviceService,
+    private _toasterService:ToastrService
   ) {
     this._getData();
+
   }
+
 
   _loginForm: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
@@ -39,8 +43,8 @@ export class LoginComponent {
   Datas: any;
 
   add() {
-    this.addShow = true;
-    this.showUpdate = false;
+    this.Show = true;
+    this.Update = false;
   }
   _getData() {
     this._crudservice.getData().subscribe((user) => {
@@ -66,11 +70,8 @@ export class LoginComponent {
   ActiveItem: any;
 
   _edit(data: any) {
-    this.addShow = false;
-    this.showUpdate = true;
-
-    // this._loginForm.patchValue(item);
-    // this.ActiveItem = item;
+    this.Show = false;
+    this.Update = true;
 
     this._loginForm.patchValue({
       name: data.name,
@@ -87,11 +88,16 @@ export class LoginComponent {
     this._crudInterface.name = this._loginForm.value.name;
     this._crudInterface.email = this._loginForm.value.email;
     this._crudInterface.mobile = this._loginForm.value.mobile;
-    this._crudInterface.city = this._loginForm.value.mobile;
+    this._crudInterface.city = this._loginForm.value.city;
     this._crudInterface.pin = this._loginForm.value.pin;
 
     this._crudservice
       .updateD(this._crudInterface, this._crudInterface.id)
       .subscribe((res) => {});
+      this._toasterService.success('Updated SuccessFully','Done',{
+        timeOut: 3000,
+      });
+    
   }
+  
 }

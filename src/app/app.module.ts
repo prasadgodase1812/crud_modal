@@ -4,16 +4,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { SubjectComponent } from './component/subject/subject.component';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, SubjectComponent],
   imports:
    [
     BrowserModule,
      AppRoutingModule,
      ReactiveFormsModule,
      FormsModule,
-     HttpClientModule
+     HttpClientModule,
+     ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

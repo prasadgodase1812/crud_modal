@@ -10,6 +10,10 @@
       >
         ADD
       </button>
+      <button class="btn btn-secondary m-2" routerLink="subject">
+        Submit
+      </button>
+      <button class=" btn btn-danger "routerLink="subject">Subject</button>
     </div>
   </div>
 </nav>
@@ -92,7 +96,7 @@
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input
-                      type="text"
+                      type="email"
                       class="form-control"
                       formControlName="email"
                     />
@@ -100,7 +104,7 @@
                   <div class="form-group">
                     <label for="mobile">Mobile No</label>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       formControlName="mobile"
                     />
@@ -129,7 +133,7 @@
         <div class="modal-footer">
           <button
             class="btn btn-success"
-            *ngIf="showUpdate"
+            *ngIf="Update"
             (click)="_updateData()"
           >
             Update
@@ -143,7 +147,7 @@
             Close
           </button>
           <button
-            *ngIf="addShow"
+            *ngIf="Show"
             type="button"
             class="btn btn-success"
             (click)="_userData()"
